@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="content-type" Content="text/html; charset=UTF-8" />
+    <script type='text/javascript' src='/js/jquery-1.8.3.min.js'></script>
+    <script type='text/javascript' src='/js/bootstrap.min.js'></script>
+    <!--link rel='stylesheet' href='/css/style.css' /-->
+    <link rel='stylesheet' href='/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/css/core.css' />
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <a class="brand" href="#"><%= title %></a>
+        <div class"nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a>hello guest</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a>login</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div id="sidebar" class="span3">
+          <h1><%= title %></h1>
+          <ul class="nav nav-list">
+            <li class="nav-header">選挙</li>
+            <% for (var i in electionList) {
+               if (electionId == electionList[i].id) {
+                 var active = "active";
+               } else {
+                 var active = "nav-header";
+               }
+            %>
+            <li class="<%= active %>"><a href="#"><%= electionList[i].title %> <%= electionList[i].votingDay %></a></li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="span9">
+          <%- body -%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

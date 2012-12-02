@@ -1,0 +1,5 @@
+
+
+exports.getOpinionsByElectionId = function(electionId) {
+	
+};
