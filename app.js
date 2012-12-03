@@ -56,6 +56,13 @@ d.run(function(){
 	http.createServer(app).listen(app.get('port'), function(){
 	  console.log("Express server listening on port " + app.get('port'));
 	});
+	
+	var connection = require('./lib/connection');
+	connection.select("select * from test.m_test where id = :id", {id:1}, function(rows) {
+		for (i in rows) {
+			console.log("test:" + rows[i]["id"]);
+		}
+	});
 });
 
 d.on('error', function(e) {
@@ -73,7 +80,7 @@ function addCommonComponent(app) {
 		}
 		
 		res.locals({
-			title : 'Vote!!',
+			title : 'The Vote',
 	      	electionId: electionId,
 			electionList : electionDao.getElectionList()
 			});
