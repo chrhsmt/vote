@@ -11,6 +11,7 @@ var express = require('express')
   , path = require('path')
   , domain = require('domain')
   , expressLayouts = require('express-ejs-layouts')
+  , RadisStore = require('connect-redis')(express)
   , electionDao = require('./dao/electionDao');
 
 var d = domain.create();
@@ -27,10 +28,13 @@ d.run(function(){
 	  app.use(expressLayouts);
 	  app.use(express.favicon());
 	  app.use(express.logger('dev'));
+	  app.use(express.compress());
 	  app.use(express.bodyParser());
 	  app.use(express.methodOverride());
 	  app.use(express.cookieParser('your secret here'));
-	  app.use(express.session());
+	  app.use(express.session({
+		  store: new RadisStore({db: 1, prefix: 'session:'}) // add Object {host: host, port: port, pass: pass}
+	  }));
 	  addCommonComponent(app);
 
 	  app.use(app.router);

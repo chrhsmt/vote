@@ -11,6 +11,10 @@ var issueDao = require('../dao/issueDao');
 exports.index = function(req, res, next){
 
 	console.log("====0");
+	if (req.query.test) {
+		req.session.sessionTest = req.query.test;
+	}
+	
 	async.parallel([
 	              function(callback) {
 	            	  console.log("----1")
@@ -25,6 +29,7 @@ exports.index = function(req, res, next){
 				  	  console.log("-----3")
 				  	// 最終的なcallback内でレンダリング処理を。
 				      res.render('index', {
+				    	sessionTest: req.session.sessionTest,
 				      	candidates: candidateDao.getCandidates(),
 				      	issues: issueDao.getIssues()
 				      	});

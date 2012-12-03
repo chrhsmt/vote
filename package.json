@@ -10,6 +10,7 @@
     "ejs": "*",
     "express-ejs-layouts": "*",
     "mysql": "*",
+    "connect-redis": "*",
     "async": "*"
   }
 }
