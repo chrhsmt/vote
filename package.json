@@ -9,7 +9,7 @@
     "express": "3.0.3",
     "ejs": "*",
     "express-ejs-layouts": "*",
-    "mysql": "*",
+    "mysql": "2.0.0-alpha4",
     "generic-pool": "*",
     "connect-redis": "*",
     "dateformat": "*",
