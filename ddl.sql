@@ -2,34 +2,8 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `test` ;
-CREATE SCHEMA IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8 ;
 DROP SCHEMA IF EXISTS `vote` ;
 CREATE SCHEMA IF NOT EXISTS `vote` DEFAULT CHARACTER SET utf8 ;
-USE `test` ;
-
--- -----------------------------------------------------
--- Table `test`.`m_test`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `test`.`m_test` ;
-
-CREATE  TABLE IF NOT EXISTS `test`.`m_test` (
-  `id` INT(11) NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `test`.`tbl_test`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `test`.`tbl_test` ;
-
-CREATE  TABLE IF NOT EXISTS `test`.`tbl_test` (
-  `id` INT NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
 USE `vote` ;
 
 -- -----------------------------------------------------
