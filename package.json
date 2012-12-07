@@ -10,7 +10,9 @@
     "ejs": "*",
     "express-ejs-layouts": "*",
     "mysql": "*",
+    "generic-pool": "*",
     "connect-redis": "*",
+    "dateformat": "*",
     "async": "*"
   }
 }

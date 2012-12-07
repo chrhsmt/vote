@@ -1,0 +1,36 @@
+<% if (!election) { %>
+<p>その選挙は存在しません。</p>
+<% } else { %>
+<form class="form-horizontal" action="/election/<%= election.election_id %>" method="post">
+  <fieldset>
+  <legend><%= election.title %></legend>
+  <div class="control-group">
+  <label class="control-label" for="inputName">タイトル</label>
+  <div class="controls">
+  <input type="text" id="inputName" name="name" placeholder="タイトル" value="<%= election.title %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputDescription">説明</label>
+  <div class="controls">
+  <textarea id="inputDescription" name="description" placeholder="説明"><%= election.description %></textarea>
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputBirthday">誕生日</label>
+  <div class="controls">
+  <input type="text" id="inputBirthday" name="birthday" placeholder="誕生日" value="<%= dateFormat(election.birthday, 'yyyy/mm/dd') %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <div class="controls">
+  <% if (isLogin) { %>
+  <button type="submit" class="btn">変更</button>
+  <% } else { %>
+  <button type="button" class="btn">ログイン</button>
+  <% } %>
+  </div>
+  </div>
+  </fieldset>
+</form>
+<% } %>

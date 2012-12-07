@@ -1,0 +1,13 @@
+<table class="table">
+  <caption><%= election.title %></caption>
+  <tr>
+    <th>選挙区ID</th>
+    <th>選挙区名</th>
+  </tr>
+  <% for (i in constituencies) { %>
+  <tr>
+    <td><a href="/election/<%= election.election_id %>/constituency/<%= constituencies[i].constituency_id %>"><%= constituencies[i].constituency_id %></a></td>
+    <td><%= constituencies[i].name %></td>
+  </tr>
+  <% } %>
+</table>

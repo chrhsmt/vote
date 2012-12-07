@@ -1,0 +1,14 @@
+<table class="table">
+  <tr>
+    <th>名前</th>
+    <th>説明</th>
+    <th>誕生日</th>
+  </tr>
+  <% for (i in candidates) {%>
+  <tr>
+    <td><a href="/candidate/<%= candidates[i].candidate_id %>"><%= candidates[i].name %></a></td>
+    <td><%= candidates[i].description %></td>
+    <td><%= candidates[i].birthday %></td>
+  </tr>
+  <% } %>
+</table>

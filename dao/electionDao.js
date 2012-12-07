@@ -1,19 +1,13 @@
+var connection = require('../lib/connection');
 
-var electionList = [
-                    {
-                    	id:0,
-                    	title:"東京都知事選",
-                    	description:"東京都知事選::説明",
-                    	votingDate:"2012/12/16"
-                    },
-                    {
-                    	id:1,
-                    	title:"衆議院総選挙",
-                    	description:"衆議院総選挙::説明",
-                    	votingDate:"2012/12/16"
-                    }
-                    ];
+exports.get = function(id, callback) {
+	connection.select("select * from m_election where election_id = :electionId", {electionId: id}, function(rows) {
+		if (callback) callback(rows);
+	});
+};
 
-exports.getElectionList = function() {
-	return electionList;
+exports.getAllElections = function(callback) {
+	connection.select("select * from m_election", null, function(rows) {
+		if (callback) callback(rows);
+	});
 };

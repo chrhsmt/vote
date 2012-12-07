@@ -1,0 +1,12 @@
+<table class="table">
+  <tr>
+    <th>タイトル</th>
+    <th>説明</th>
+  </tr>
+  <% for (i in elections) {%>
+  <tr>
+    <td><a href="/election/<%= elections[i].election_id %>"><%= elections[i].title %></a></td>
+    <td><%= elections[i].description %></td>
+  </tr>
+  <% } %>
+</table>

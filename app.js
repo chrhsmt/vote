@@ -4,20 +4,25 @@
  */
 
 var express = require('express')
+  , expressLayouts = require('express-ejs-layouts')
   , routes = require('./routes')
+  , about = require('./routes/about')
   , user = require('./routes/user')
+  , login = require('./routes/login')
+  , election = require('./routes/election')
   , candidate = require('./routes/candidate')
+  , constituency = require('./routes/constituency')
   , http = require('http')
   , path = require('path')
   , domain = require('domain')
-  , expressLayouts = require('express-ejs-layouts')
+  , dateFormat = require('dateFormat')
   , RadisStore = require('connect-redis')(express)
   , electionDao = require('./dao/electionDao');
 
 var d = domain.create();
 
 d.run(function(){
-	var app = express();
+	var app = module.exports = express();
 
 	app.configure(function(){
 
@@ -39,6 +44,13 @@ d.run(function(){
 
 	  app.use(app.router);
 	  app.use(express.static(path.join(__dirname, 'public')));
+
+	  // helper and application settings
+	  app.locals({
+		title : 'The Vote',
+		dateFormat: dateFormat
+	  });
+	  
 	});
 
 	app.configure('development', function(){
@@ -53,19 +65,19 @@ d.run(function(){
 	});
 
 	app.get('/', routes.index);
+	app.get('/about', about.index);
 	app.get('/users', user.list);
 	app.get('/user/:id', user.id);
-	app.get('/candidate/:candidateId', candidate.id)
+	app.get('/login', login.login);
+	app.get('/logout', login.logout);
+	app.get('/candidate/:candidateId?', candidate.id)
+	app.post('/candidate/:candidateId', candidate.update)
+	app.get('/election/:electionId?', election.index)
+	app.get('/election/:electionId/edit', election.detail)
+	app.get('/election/:electionId/constituency/:constituencyId', constituency.index);
 
 	http.createServer(app).listen(app.get('port'), function(){
 	  console.log("Express server listening on port " + app.get('port'));
-	});
-	
-	var connection = require('./lib/connection');
-	connection.select("select * from test.m_test where id = :id", {id:1}, function(rows) {
-		for (i in rows) {
-			console.log("test:" + rows[i]["id"]);
-		}
 	});
 });
 
@@ -78,16 +90,19 @@ function addCommonComponent(app) {
 	app.use(function(req, res, next) {
 		console.log("addCommonComponent");
 
-		var electionId = 0;
+		var isLogin = (!!req.session.isLogin);
+		var electionId = 1;
 		if (req.param.id) {
 			//最新を取得？
 		}
-		
-		res.locals({
-			title : 'The Vote',
-	      	electionId: electionId,
-			electionList : electionDao.getElectionList()
-			});
-		next();
+		electionDao.getAllElections(function(rows) {
+			res.locals({
+				
+				isLogin: isLogin,
+		      	electionId: electionId,
+				electionList : rows
+				});
+			next();
+		});
 	});
 }

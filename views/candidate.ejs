@@ -1,6 +1,49 @@
-<table class="table">
-  <tr>
-    <th>名前</th>
-    <td><%= candidate.name %></td>
-  </tr>
-</table>
+<% if (!candidate) { %>
+<p>その立候補者は存在しません。</p>
+<% } else { %>
+<form class="form-horizontal" action="/candidate/<%= candidate.candidate_id %>" method="post">
+  <fieldset>
+  <legend><%= candidate.name %></legend>
+  <% if (candidate.thumbUrl) {%>
+  <div class="control-group">
+    <div class="controls">
+      <img class="img-polaroid" src="<%= candidate.thumbUrl %>"/>
+    </div>
+  </div>
+  <% } %>
+  <div class="control-group">
+  <label class="control-label" for="inputThumbUrl">サムネイル</label>
+  <div class="controls">
+  <input type="text" id="inputThumbUrl" name="thumbUrl" placeholder="サムネイル" value="<%= candidate.thumbUrl %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputName">名前</label>
+  <div class="controls">
+  <input type="text" id="inputName" name="name" placeholder="名前" value="<%= candidate.name %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputDescription">説明</label>
+  <div class="controls">
+  <textarea id="inputDescription" name="description" placeholder="説明"><%= candidate.description %></textarea>
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputBirthday">誕生日</label>
+  <div class="controls">
+  <input type="text" id="inputBirthday" name="birthday" placeholder="誕生日" value="<%= dateFormat(candidate.birthday, 'yyyy/mm/dd') %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <div class="controls">
+  <% if (isLogin) { %>
+  <button type="submit" class="btn">変更</button>
+  <% } else { %>
+  <button type="button" class="btn">ログイン</button>
+  <% } %>
+  </div>
+  </div>
+  </fieldset>
+</form>
+<% } %>

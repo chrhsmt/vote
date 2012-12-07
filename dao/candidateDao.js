@@ -1,3 +1,4 @@
+var connection = require('../lib/connection');
 
 var candidates = [
                     {
@@ -20,11 +21,27 @@ exports.getCandidates = function() {
 	return candidates;
 };
 
-exports.getById = function(id) {
-	for (i = 0; i < candidates.length; i++) {
-		if (candidates[i].id == id) {
-			return candidates[i];
-		}
-	}
-	return null;
+exports.getById = function(id, callback) {
+	connection.select("select * from m_candidate where candidate_id = :candidate_id", {candidate_id: id}, function(rows) {
+		if (callback) callback(rows);
+	});
+};
+
+exports.list = function(params, callback) {
+	var sql = "select * from m_candidate";
+	connection.select(sql, params, function(rows) {
+		if (callback) callback(rows);
+	});
+};
+
+exports.update = function(params, callback) {
+	var sql = "update m_candidate set " +
+			"name = :name, " + 
+			"description = :description, " +
+			"thumbUrl = :thumbUrl, " + 
+			"update_date = now() " + 
+			"where candidate_id = :candidate_id";
+	connection.update(sql, params, function(rows) {
+		if (callback) callback(rows);
+	});
 };

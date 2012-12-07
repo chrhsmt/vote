@@ -1,31 +1,8 @@
-<%= sessionTest %> <br />
-<table class="table table-bordered table-hover">
-  <caption></caption>
-  <thead>
-    <tr>
-      <th>候補者</th>
-      <% for (var i in issues) { %>
-      <th><%= issues[i].title %></th>
-      <% } %>
-    </tr>
-  </thead>
-  <tbody>
-    <% for (var i in candidates) { %>
-    <tr>
-      <th><i class="icon-user"></i>&nbsp;<a href="/candidate/<%= candidates[i].id %>"><%= candidates[i].name %></a></th>
-      <td>
-        サマリー1<br />
-        テスト
-      </td>
-      <td>サマリー2</td>
-      <td>
-        サマリー1<br />
-        テスト
-      </td>
-      <td>サマリー2</td>
-    </tr>
-    <% } %>
-  </tbody>
-  <tfoot>
-  </tfoot>
-</table>
+<div class="span10">
+<h2 class="text-info">私たちの立候補者って？</h2>
+<p>
+<small>
+選挙に入れ子んでいる人なら別ですが、普通一人一人の立候補者について自分一人でシラミつぶしに調べ上げる、って凄く大変です。でも選挙公報や選挙放送だけじゃ自分が知りたいと思っていることはわかりません。<br />
+ですので、ここは一つ疑問を感じた人が課題(issue)を挙げ、時間のある人が調べたものを立候補者毎に調べられたところだけ埋めて行く、そんな感じはいかかでしょうか？
+</small></p>
+</div>
