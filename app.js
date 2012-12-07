@@ -15,7 +15,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , domain = require('domain')
-  , dateFormat = require('dateFormat')
+  , dateFormat = require('dateformat')
   , RadisStore = require('connect-redis')(express)
   , electionDao = require('./dao/electionDao');
 
