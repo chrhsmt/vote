@@ -90,7 +90,7 @@ function addCommonComponent(app) {
 	app.use(function(req, res, next) {
 		console.log("addCommonComponent");
 
-		var isLogin = (!!req.session.isLogin);
+		var isLogin = (req.session.isLogin != undefined && req.session.isLogin == true);
 		var electionId = 1;
 		if (req.param.id) {
 			//最新を取得？
