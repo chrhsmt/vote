@@ -49,7 +49,7 @@ CREATE  TABLE IF NOT EXISTS `vote`.`m_candidate` (
   `name` VARCHAR(45) NOT NULL ,
   `description` TEXT NULL ,
   `thumbUrl` VARCHAR(255) NULL ,
-  `party_id` VARCHAR(45) NULL COMMENT '党派ID' ,
+  `party_id` INT NULL COMMENT '党派ID' ,
   `new_flg` INT NULL COMMENT '新旧(新／前／元)' ,
   `elected_count` INT NULL COMMENT '当選回数' ,
   `birthday` DATETIME NULL ,
