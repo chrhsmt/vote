@@ -16,7 +16,9 @@ CREATE  TABLE IF NOT EXISTS `vote`.`m_election` (
   `title` VARCHAR(45) NULL DEFAULT NULL ,
   `description` TEXT NULL DEFAULT NULL ,
   `voting_date` DATETIME NULL DEFAULT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
   `regist_date` DATETIME NOT NULL ,
+  `update_user_id` BIGINT NOT NULL ,
   `update_date` TIMESTAMP NOT NULL ,
   PRIMARY KEY (`election_id`) )
 ENGINE = InnoDB
@@ -53,8 +55,10 @@ CREATE  TABLE IF NOT EXISTS `vote`.`m_candidate` (
   `new_flg` INT NULL COMMENT '新旧(新／前／元)' ,
   `elected_count` INT NULL COMMENT '当選回数' ,
   `birthday` DATETIME NULL ,
-  `career` VARCHAR(45) NULL ,
-  `reegist_date` DATETIME NOT NULL ,
+  `career` TEXT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
+  `regist_date` DATETIME NOT NULL ,
+  `update_user_id` BIGINT NOT NULL ,
   `update_date` TIMESTAMP NOT NULL ,
   PRIMARY KEY (`candidate_id`) ,
   INDEX `fk_m_candidate_m_party1_idx` (`party_id` ASC) ,
@@ -110,6 +114,7 @@ DROP TABLE IF EXISTS `vote`.`tbl_election_constituency` ;
 CREATE  TABLE IF NOT EXISTS `vote`.`tbl_election_constituency` (
   `election_id` INT(11) NOT NULL ,
   `constituency_id` INT NOT NULL ,
+  `regist_user_id` BIGINT NULL ,
   `regist_date` DATETIME NOT NULL ,
   PRIMARY KEY (`election_id`, `constituency_id`) ,
   INDEX `fk_m_election_has_m_constituency_m_constituency1_idx` (`constituency_id` ASC) ,
@@ -129,14 +134,15 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `vote`.`tbl_election_candidate`
+-- Table `vote`.`tbl_constituency_candidate`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `vote`.`tbl_election_candidate` ;
+DROP TABLE IF EXISTS `vote`.`tbl_constituency_candidate` ;
 
-CREATE  TABLE IF NOT EXISTS `vote`.`tbl_election_candidate` (
+CREATE  TABLE IF NOT EXISTS `vote`.`tbl_constituency_candidate` (
   `election_id` INT(11) NOT NULL ,
   `constituency_id` INT NOT NULL ,
   `candidate_id` INT NOT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
   `regist_date` DATETIME NOT NULL ,
   PRIMARY KEY (`election_id`, `constituency_id`, `candidate_id`) ,
   INDEX `fk_m_election_has_m_constituency_has_m_candidate_m_candidat_idx` (`candidate_id` ASC) ,
@@ -155,6 +161,100 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `vote`.`m_issue`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vote`.`m_issue` ;
+
+CREATE  TABLE IF NOT EXISTS `vote`.`m_issue` (
+  `issue_id` INT NOT NULL ,
+  `title` VARCHAR(45) NOT NULL ,
+  `description` TEXT NOT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
+  `regist_date` DATETIME NOT NULL ,
+  PRIMARY KEY (`issue_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vote`.`tbl_constituency_issue`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vote`.`tbl_constituency_issue` ;
+
+CREATE  TABLE IF NOT EXISTS `vote`.`tbl_constituency_issue` (
+  `election_id` INT(11) NOT NULL ,
+  `constituency_id` INT NOT NULL ,
+  `issue_id` INT NOT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
+  `regist_date` DATETIME NOT NULL ,
+  PRIMARY KEY (`election_id`, `constituency_id`, `issue_id`) ,
+  INDEX `fk_tbl_election_constituency_has_m_issue_m_issue1_idx` (`issue_id` ASC) ,
+  INDEX `fk_tbl_election_constituency_has_m_issue_tbl_election_const_idx` (`election_id` ASC, `constituency_id` ASC) ,
+  CONSTRAINT `fk_tbl_election_constituency_has_m_issue_tbl_election_constit1`
+    FOREIGN KEY (`election_id` , `constituency_id` )
+    REFERENCES `vote`.`tbl_election_constituency` (`election_id` , `constituency_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tbl_election_constituency_has_m_issue_m_issue1`
+    FOREIGN KEY (`issue_id` )
+    REFERENCES `vote`.`m_issue` (`issue_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `vote`.`tbl_opinion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vote`.`tbl_opinion` ;
+
+CREATE  TABLE IF NOT EXISTS `vote`.`tbl_opinion` (
+  `opinion_id` INT NOT NULL ,
+  `election_id` INT(11) NOT NULL ,
+  `constituency_id` INT NOT NULL ,
+  `candidate_id` INT NOT NULL ,
+  `issue_id` INT NOT NULL ,
+  `text` TEXT NULL ,
+  `regist_user_id` BIGINT NOT NULL ,
+  `regist_date` DATETIME NOT NULL ,
+  `update_user_id` BIGINT NOT NULL ,
+  `update_date` TIMESTAMP NOT NULL ,
+  PRIMARY KEY (`election_id`, `constituency_id`, `candidate_id`, `issue_id`) ,
+  INDEX `fk_tbl_election_candidate_has_m_issue_tbl_election_candidat_idx` (`election_id` ASC, `constituency_id` ASC, `candidate_id` ASC) ,
+  INDEX `fk_tbl_issues_tbl_constituency_issue3_idx` (`issue_id` ASC) ,
+  UNIQUE INDEX `opinion_id_UNIQUE` (`opinion_id` ASC) ,
+  INDEX `ind_opinion_id` (`opinion_id` ASC) ,
+  CONSTRAINT `fk_tbl_election_candidate_has_m_issue_tbl_election_candidate1`
+    FOREIGN KEY (`election_id` , `constituency_id` , `candidate_id` )
+    REFERENCES `vote`.`tbl_constituency_candidate` (`election_id` , `constituency_id` , `candidate_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tbl_issues_tbl_constituency_issue3`
+    FOREIGN KEY (`issue_id` )
+    REFERENCES `vote`.`tbl_constituency_issue` (`issue_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `vote`.`m_user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vote`.`m_user` ;
+
+CREATE  TABLE IF NOT EXISTS `vote`.`m_user` (
+  `user_id` BIGINT(20) NOT NULL ,
+  `oauth_type` INT(11) NOT NULL COMMENT '1:Facebook\\\\n2:….\\\\n' ,
+  `auth_id` VARCHAR(255) NOT NULL ,
+  `regist_date` DATETIME NOT NULL ,
+  `last_login_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`user_id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -165,8 +265,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vote`;
-INSERT INTO `vote`.`m_election` (`election_id`, `title`, `description`, `voting_date`, `regist_date`, `update_date`) VALUES (1, '衆議院総選挙', '衆議院総選挙です', '2012/12/16', '2012/12/02', '2012/12/02');
-INSERT INTO `vote`.`m_election` (`election_id`, `title`, `description`, `voting_date`, `regist_date`, `update_date`) VALUES (2, '東京都知事選', '東京都知事選です', '2012/12/16', '2012/12/02', '2012/12/02');
+INSERT INTO `vote`.`m_election` (`election_id`, `title`, `description`, `voting_date`, `regist_user_id`, `regist_date`, `update_user_id`, `update_date`) VALUES (1, '衆議院総選挙', '衆議院総選挙です', '2012/12/16', 0, '2012/12/02', 0, '2012/12/02');
+INSERT INTO `vote`.`m_election` (`election_id`, `title`, `description`, `voting_date`, `regist_user_id`, `regist_date`, `update_user_id`, `update_date`) VALUES (2, '東京都知事選', '東京都知事選です', '2012/12/16', 0, '2012/12/02', 0, '2012/12/02');
 
 COMMIT;
 
@@ -175,7 +275,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vote`;
-INSERT INTO `vote`.`m_candidate` (`candidate_id`, `name`, `description`, `thumbUrl`, `party_id`, `new_flg`, `elected_count`, `birthday`, `career`, `reegist_date`, `update_date`) VALUES (1, 'テスト太郎', 'テスト太郎っす', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Taro_Aso_in_World_Economic_Forum_Annual_Meeting_in_Davos_%28cropped%29.jpg/200px-Taro_Aso_in_World_Economic_Forum_Annual_Meeting_in_Davos_%28cropped%29.jpg', NULL, NULL, NULL, '1999/01/01', NULL, '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_candidate` (`candidate_id`, `name`, `description`, `thumbUrl`, `party_id`, `new_flg`, `elected_count`, `birthday`, `career`, `regist_user_id`, `regist_date`, `update_user_id`, `update_date`) VALUES (1, 'テスト太郎', 'テスト太郎っす', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Taro_Aso_in_World_Economic_Forum_Annual_Meeting_in_Davos_%28cropped%29.jpg/200px-Taro_Aso_in_World_Economic_Forum_Annual_Meeting_in_Davos_%28cropped%29.jpg', NULL, NULL, NULL, '1999/01/01', NULL, 0, '2012/12/4', 0, '2012/12/4');
+INSERT INTO `vote`.`m_candidate` (`candidate_id`, `name`, `description`, `thumbUrl`, `party_id`, `new_flg`, `elected_count`, `birthday`, `career`, `regist_user_id`, `regist_date`, `update_user_id`, `update_date`) VALUES (2, 'テスト二郎', '二郎', NULL, NULL, NULL, NULL, '1982/01/01', NULL, 0, '2012/12/4', 0, '2012/12/4');
 
 COMMIT;
 
@@ -228,15 +329,43 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vote`;
-INSERT INTO `vote`.`tbl_election_constituency` (`election_id`, `constituency_id`, `regist_date`) VALUES (1, 1, '2012/12/4');
+INSERT INTO `vote`.`tbl_election_constituency` (`election_id`, `constituency_id`, `regist_user_id`, `regist_date`) VALUES (1, 1, 0, '2012/12/4');
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `vote`.`tbl_election_candidate`
+-- Data for table `vote`.`tbl_constituency_candidate`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vote`;
-INSERT INTO `vote`.`tbl_election_candidate` (`election_id`, `constituency_id`, `candidate_id`, `regist_date`) VALUES (1, 1, 1, '2012/12/4');
+INSERT INTO `vote`.`tbl_constituency_candidate` (`election_id`, `constituency_id`, `candidate_id`, `regist_user_id`, `regist_date`) VALUES (1, 1, 1, 0, '2012/12/4');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `vote`.`m_issue`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vote`;
+INSERT INTO `vote`.`m_issue` (`issue_id`, `title`, `description`, `regist_user_id`, `regist_date`) VALUES (1, '原発', '原発についてどう思うか', 0, '2012/12/7');
+INSERT INTO `vote`.`m_issue` (`issue_id`, `title`, `description`, `regist_user_id`, `regist_date`) VALUES (2, 'TPP', 'TPPの参加についてどう思うか', 0, '2012/12/7');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `vote`.`tbl_constituency_issue`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vote`;
+INSERT INTO `vote`.`tbl_constituency_issue` (`election_id`, `constituency_id`, `issue_id`, `regist_user_id`, `regist_date`) VALUES (1, 1, 1, 0, '2012/12/7');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `vote`.`tbl_opinion`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vote`;
+INSERT INTO `vote`.`tbl_opinion` (`opinion_id`, `election_id`, `constituency_id`, `candidate_id`, `issue_id`, `text`, `regist_user_id`, `regist_date`, `update_user_id`, `update_date`) VALUES (1, 1, 1, 1, 1, '\nはんたいー\nはんたい？\n', 0, '2012/12/7', 0, NULL);
 
 COMMIT;
