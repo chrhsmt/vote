@@ -4,6 +4,10 @@ exports.index = function(req, res) {
 	if (req.params.opinionId == "new") {
 		render({
 			opinion_id: 'new',
+			election_id: req.query.electionId,
+			constituency_id: req.query.constituencyId,
+			candidate_id: req.query.candidateId,
+			issue_id: req.query.issueId,
 			text: ''
 				});
 	} else {
@@ -27,12 +31,13 @@ exports.index = function(req, res) {
 
 exports.regist = function(req, res) {
 	req.body.userId = req.session.user.user_id;
-	if (req.body.opinion_id == 'new') {
-		
+	if (req.body.opinionId == 'new') {
+		opinionDao.insert(req.body, function(rows) {
+			res.redirect('/election/' + req.params.electionId + '/constituency/' + req.params.constituencyId);
+		});
 	} else {
-		
+		opinionDao.update(req.body, function(rows) {
+			res.redirect('/election/' + req.params.electionId + '/constituency/' + req.params.constituencyId);
+		});
 	}
-	constituencyDao.addIssue(req.body, function() {
-		res.redirect('/election/' + req.body.electionId + '/constituency/' + req.body.constituencyId);
-	});
 };

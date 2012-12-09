@@ -30,9 +30,9 @@
   </div>
   </div>
   <div class="control-group">
-  <label class="control-label" for="inputBirthday">誕生日</label>
+  <label class="control-label" for="inputBirthday">生年月日</label>
   <div class="controls">
-  <input type="text" id="inputBirthday" name="birthday" placeholder="誕生日" value="<%= dateFormat(candidate.birthday, 'yyyy/mm/dd') %>" />
+  <input type="text" id="inputBirthday" name="birthday" placeholder="生年月日" value="<%= dateFormat(candidate.birthday, 'yyyy/mm/dd') %>" />
   </div>
   </div>
   <div class="control-group">
@@ -40,7 +40,7 @@
   <% if (isLogin) { %>
   <button type="submit" class="btn">追加&nbsp;/&nbsp;変更</button>
   <% } else { %>
-  <button type="button" class="btn">ログイン</button>
+  <a href="/auth/facebook"><img src="/img/flogin.jpg" /></a>
   <% } %>
   </div>
   </div>

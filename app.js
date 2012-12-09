@@ -52,6 +52,11 @@ d.run(function(){
 	  app.use(app.router);
 	  app.use(express.static(path.join(__dirname, 'public')));
 
+	  app.use(function(err, req, res, next){
+		  console.error(err.stack);
+		  res.render('error');
+		});
+
 	  // helper and application settings
 	  app.locals({
 		title : 'The Vote',
@@ -189,6 +194,9 @@ function addCommonComponent(app) {
 		var isLogin = (req.session.passport.user != null);		
 //		for (x in req.session.passport.user) {
 //			console.log(x + ' : ' + req.session.passport.user[x]);
+//		}
+//		for (x in req.header) {
+//			console.log("kkkkk:" + x);
 //		}
 		var electionId = 1;
 		if (req.param.id) {

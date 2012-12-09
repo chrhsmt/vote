@@ -1,4 +1,8 @@
-<textarea rows="3">
+<textarea rows="3" name="text">
 <%= opinion.text %>
 </textarea>
-<input type="hidden" name="opinion_id" value="<%= opinion.opinion_id %>" />
+<input type="hidden" name="opinionId" value="<%= opinion.opinion_id %>" />
+<input type="hidden" name="electionId" value="<%= opinion.election_id %>" />
+<input type="hidden" name="constituencyId" value="<%= opinion.constituency_id %>" />
+<input type="hidden" name="candidateId" value="<%= opinion.candidate_id %>" />
+<input type="hidden" name="issueId" value="<%= opinion.issue_id %>" />

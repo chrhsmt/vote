@@ -10,15 +10,16 @@ exports.get = function(opinionId, callback) {
 
 exports.insert = function(params, callback) {
 	var sql = "insert into tbl_opinion" +
-			"(candidate_id, name, description, thumbUrl, birthday, regist_user_id, regist_date, update_user_id, update_date) " +
+			"(opinion_id, election_id, constituency_id, candidate_id, issue_id, text, regist_user_id, regist_date, update_user_id, update_date) " +
 			"select " +
-			"ifnull(max(candidate_id), 0) + 1, " +
-			":name, " +
-			":description, " +
-			":thumbUrl, " +
-			":birthday, " +
+			"ifnull(max(opinion_id), 0) + 1, " +
+			":electionId, " +
+			":constituencyId, " +
+			":candidateId, " +
+			":issueId, " +
+			":text, " +
 			":userId, now(), :userId, now() " +
-			"from m_candidate";
+			"from tbl_opinion";
 	connection.insert(sql, params, function(rows) {
 		if (callback) callback(rows);
 	});
@@ -26,12 +27,14 @@ exports.insert = function(params, callback) {
 
 exports.update = function(params, callback) {
 	var sql = "update tbl_opinion set " +
-			"name = :name, " + 
-			"description = :description, " +
-			"thumbUrl = :thumbUrl, " + 
-			"update_user_id = :updateUserId, " + 
+			"text = :text, " + 
+			"update_user_id = :userId, " + 
 			"update_date = now() " + 
-			"where candidate_id = :candidate_id";
+			"where " +
+			"election_id = :electionId " +
+			"and constituency_id = :constituencyId " +
+			"and candidate_id = :candidateId " +
+			"and issue_id = :issueId";
 	connection.update(sql, params, function(rows) {
 		if (callback) callback(rows);
 	});

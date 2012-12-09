@@ -14,7 +14,7 @@
     <tr>
       <th><i class="icon-user"></i>&nbsp;<a href="/candidate/<%= candidates[i].candidate_id %>"><%= candidates[i].name %></a></th>
       <% for (var j in issues) { %>
-      <td id="opinion_<%= candidates[i].candidate_id %>_<%= issues[j].issue_id %>"><a href="/opinion/new" data-target="#opinion" data-toggle="modal"><i class="icon-pencil"></i>&nbsp;追加</a></td>
+      <td id="opinion_<%= candidates[i].candidate_id %>_<%= issues[j].issue_id %>"><a href="/opinion/new?electionId=<%= electionId %>&constituencyId=<%= constituencyId %>&candidateId=<%= candidates[i].candidate_id %>&issueId=<%= issues[j].issue_id %>" data-target="#opinion" data-toggle="modal"><i class="icon-pencil"></i>&nbsp;追加</a></td>
       <% } %>
       <td>&nbsp;</td>
     </tr>
@@ -49,7 +49,7 @@
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button class="btn btn-primary">Save changes</button>
+<% if (isLogin) { %><button class="btn btn-primary">Save changes</button><% } %>
 </div>
 </form>
 </div>
@@ -76,7 +76,7 @@
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button class="btn btn-primary">Save changes</button>
+<% if (isLogin) { %><button class="btn btn-primary">Save changes</button><% } %>
 </div>
 </form>
 </div>
@@ -92,7 +92,7 @@
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button class="btn btn-primary">Save changes</button>
+<% if (isLogin) { %><button class="btn btn-primary">Save changes</button><% } %>
 </div>
 </form>
 </div>
@@ -100,7 +100,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   <% for (i in opinions) { %>
-  $("#opinion_<%= opinions[i].candidate_id %>_<%= opinions[i].issue_id %> a").html("<%= opinions[i].text.replace(/\n/g, "\\n") %>".replace(/\n/g, "<br />"));
+  $("#opinion_<%= opinions[i].candidate_id %>_<%= opinions[i].issue_id %> a").html("<%= opinions[i].text.replace(/\n/g, "\\n").replace(/\r/g, "") %>".replace(/\n/g, "<br />"));
   $("#opinion_<%= opinions[i].candidate_id %>_<%= opinions[i].issue_id %> a").attr('href', '/opinion/<%= opinions[i].opinion_id %>');
   <% } %>
 });
