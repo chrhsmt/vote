@@ -8,6 +8,9 @@ if (mode == "production") {
     		database: "vote",
     		charset: "UTF-8",
     		};
+	config.oauth ={
+			redirectUrl: "http://vote.chrhsmt.com/auth/facebook/callback"	
+	};
 } else if (mode = "development") {
 	config.db = {
     		host: "localhost",
@@ -18,5 +21,8 @@ if (mode == "production") {
     		socketPath: "/opt/local/var/run/mysql55/mysqld.sock",
     		//debug: true
     		};
+	config.oauth ={
+			redirectUrl: "http://local.chrhsmt.com:3000/auth/facebook/callback"	
+	};
 }
 module.exports = config;

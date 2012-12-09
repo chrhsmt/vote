@@ -22,7 +22,8 @@ var express = require('express')
   , dateFormat = require('dateformat')
   , RadisStore = require('connect-redis')(express)
   , electionDao = require('./dao/electionDao')
-  , userDao = require('./dao/userDao');
+  , userDao = require('./dao/userDao')
+  , config = require('./config');
 
 var d = domain.create();
 
@@ -115,11 +116,10 @@ d.run(function(){
 	//ここからFacebook認証の記述
 	var FACEBOOK_APP_ID = "449416221783759"
 	var FACEBOOK_APP_SECRET = "11f890fa5fc440281e92e18555f92ba6";
-	var CALLBACK_URL = "http://local.chrhsmt.com:3000/auth/facebook/callback";
 	passport.use(new FacebookStrategy({
 	  clientID: FACEBOOK_APP_ID,
 	  clientSecret: FACEBOOK_APP_SECRET,
-	  callbackURL: CALLBACK_URL
+	  callbackURL: config.oauth.redirectUrl
 	  },
 	  function(accessToken, refreshToken, profile, done){
 //		  console.log('accessToken:' + accessToken);
