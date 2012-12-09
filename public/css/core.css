@@ -8,3 +8,17 @@ body {
 #sidebar {
 /*	background-color: #BBD8E9*/;
 }
+
+/* .table thead tr th {
+	text-align: center;
+} */
+.table thead tr th {
+	background-color: #0088CC;
+	font-weight: 500;
+ 	color: #FFFFFF;
+}
+
+.navbar .brand {
+	padding-left: 30px;
+}
+

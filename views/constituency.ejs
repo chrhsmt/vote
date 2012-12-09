@@ -1,16 +1,3 @@
-<table class="table">
-  <tr>
-    <th>選挙区ID</th>
-    <th>選挙区名</th>
-  </tr>
-  <% for (i in candidates) { %>
-  <tr>
-    <td><%= candidates[i].candidate_id %></td>
-    <td><%= candidates[i].name %></td>
-  </tr>
-  <% } %>
-</table>
-
 <table class="table table-bordered table-hover">
   <caption></caption>
   <thead>
@@ -19,25 +6,102 @@
       <% for (var i in issues) { %>
       <th><%= issues[i].title %></th>
       <% } %>
+      <th><a href="#selectIssues" role="button" class="btn" data-toggle="modal">課題の追加</a></th>
     </tr>
   </thead>
   <tbody>
     <% for (var i in candidates) { %>
     <tr>
       <th><i class="icon-user"></i>&nbsp;<a href="/candidate/<%= candidates[i].candidate_id %>"><%= candidates[i].name %></a></th>
-      <td>
-        サマリー1<br />
-        テスト
-      </td>
-      <td>サマリー2</td>
-      <td>
-        サマリー1<br />
-        テスト
-      </td>
-      <td>サマリー2</td>
+      <% for (var j in issues) { %>
+      <td id="opinion_<%= candidates[i].candidate_id %>_<%= issues[j].issue_id %>"><a href="/opinion/new" data-target="#opinion" data-toggle="modal"><i class="icon-pencil"></i>&nbsp;追加</a></td>
+      <% } %>
+      <td>&nbsp;</td>
     </tr>
     <% } %>
+    <tr>
+      <td colspan="<%= issues.length + 2 %>"><a href="#selectCandidate" role="button" class="btn" data-toggle="modal">候補者の追加</a></td>
+    </tr>
   </tbody>
   <tfoot>
   </tfoot>
 </table>
+ 
+<!-- 課題 -->
+<div id="selectIssues" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form action="/election/<%= electionId %>/constituency/<%= constituencyId %>/addIssue" method="POST">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">この選挙区に追加する課題を選択してください</h3>
+</div>
+<div class="modal-body">
+<% for (i in allIssues) { %>
+<label class="checkbox" for="issue_<%= allIssues[i].issue_id %>">
+<input type="checkbox" id="issue_<%= allIssues[i].issue_id %>" name="issueId" value="<%= allIssues[i].issue_id %>" />
+【<%= allIssues[i].title %>】<%= allIssues[i].description %>
+</label>
+<% } %>
+<input type="hidden" name="electionId" value="<%= electionId %>" />
+<input type="hidden" name="constituencyId" value="<%= constituencyId %>" />
+<p>
+<a href="/issue/new">課題を新規に登録する</a>
+</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save changes</button>
+</div>
+</form>
+</div>
+
+<!-- 候補者 -->
+<div id="selectCandidate" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form action="/election/<%= electionId %>/constituency/<%= constituencyId %>/addCandidate" method="POST">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">この選挙区に追加する候補者を選択してください</h3>
+</div>
+<div class="modal-body">
+<% for (i in allCandidates) { %>
+<label class="checkbox" for="candidate_<%= allCandidates[i].candidate_id %>">
+<input type="checkbox" id="candidate_<%= allCandidates[i].candidate_id %>" name="candidateId" value="<%= allCandidates[i].candidate_id %>" />
+【<%= allCandidates[i].name %>】
+</label>
+<% } %>
+<input type="hidden" name="electionId" value="<%= electionId %>" />
+<input type="hidden" name="constituencyId" value="<%= constituencyId %>" />
+<p>
+<a href="/candidate/new">候補者自体を新規に登録する</a>
+</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save changes</button>
+</div>
+</form>
+</div>
+
+<!-- 意見 -->
+<div id="opinion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form action="/election/<%= electionId %>/constituency/<%= constituencyId %>/opinion" method="POST">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">意見編集</h3>
+</div>
+<div class="modal-body">
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save changes</button>
+</div>
+</form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  <% for (i in opinions) { %>
+  $("#opinion_<%= opinions[i].candidate_id %>_<%= opinions[i].issue_id %> a").html("<%= opinions[i].text.replace(/\n/g, "\\n") %>".replace(/\n/g, "<br />"));
+  $("#opinion_<%= opinions[i].candidate_id %>_<%= opinions[i].issue_id %> a").attr('href', '/opinion/<%= opinions[i].opinion_id %>');
+  <% } %>
+});
+</script>

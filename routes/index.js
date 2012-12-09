@@ -23,7 +23,7 @@ exports.index = function(req, res, next){
 				  	  console.log("-----3")
 				  	// 最終的なcallback内でレンダリング処理を。
 				      res.render('index', {
-				      	candidates: candidateDao.getCandidates()
+//				      	candidates: candidateDao.getCandidates()
 				      	});
 				    console.log("end sending response")
 			    });

@@ -1,0 +1,30 @@
+<% if (!issue) { %>
+<p>その課題は存在しません。</p>
+<% } else { %>
+<form class="form-horizontal" action="/issue/<%= issue.issue_id %>" method="post">
+  <fieldset>
+  <legend><%= issue.title %></legend>
+  <div class="control-group">
+  <label class="control-label" for="inputName">タイトル</label>
+  <div class="controls">
+  <input type="text" id="inputName" name="title" placeholder="タイトル" value="<%= issue.title %>" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputDescription">説明</label>
+  <div class="controls">
+  <textarea id="inputDescription" name="description" placeholder="説明"><%= issue.description %></textarea>
+  </div>
+  </div>
+  <div class="control-group">
+  <div class="controls">
+  <% if (isLogin) { %>
+  <button type="submit" class="btn">追加&nbsp;/&nbsp;変更</button>
+  <% } else { %>
+  <button type="button" class="btn">ログイン</button>
+  <% } %>
+  </div>
+  </div>
+  </fieldset>
+</form>
+<% } %>

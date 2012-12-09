@@ -1,32 +1,22 @@
+var connection = require('../lib/connection');
 
-var issues = [
-              {
-            	  id: 1,
-            	  title: "課題1",
-            	  description: "課題1説明"
-              },
-              {
-            	  id: 2,
-            	  title: "課題2",
-            	  description: "課題2説明"
-              },
-              {
-            	  id: 3,
-            	  title: "課題3",
-            	  description: "課題3説明"
-              },
-              {
-            	  id: 4,
-            	  title: "課題4",
-            	  description: "課題4説明"
-              },
-              {
-            	  id: 5,
-            	  title: "課題5",
-            	  description: "課題5説明"
-              },
-             ];
+exports.insert = function(params, callback) {
+	var sql = "insert into m_issue" +
+			"(issue_id, title, description, regist_user_id, regist_date) " +
+			"select " +
+			"ifnull(max(issue_id), 0) + 1, " +
+			":title, " +
+			":description, " +
+			":userId, now()" +
+			"from m_issue";
+	connection.insert(sql, params, function(rows) {
+		if (callback) callback(rows);
+	});
+};
 
-exports.getIssues = function() {
-	return issues;
+exports.getIssues = function(callback) {
+	var sql = "select * from m_issue";
+	connection.select(sql, null, function(rows) {
+		if (callback) callback(rows);
+	});
 }

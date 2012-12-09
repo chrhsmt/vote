@@ -13,6 +13,8 @@
     "generic-pool": "*",
     "connect-redis": "*",
     "dateformat": "*",
-    "async": "*"
+    "async": "*",
+    "passport": "*",
+    "passport-facebook": "*"
   }
 }
