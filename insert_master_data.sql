@@ -1,4 +1,28 @@
 -- -----------------------------------------------------
+-- Data for table `vote`.`m_party`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vote`;
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (1, '社会民主党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (2, '民主党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (3, '自由民主党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (4, '日本共産党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (5, '日本維新の会', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (6, '公明党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (7, 'みんなの党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (8, '幸福実現党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (9, '新党大地', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (10, '日本未来の党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (11, '新党改革', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (12, '国民新党', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (13, '新党日本', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (98, '諸派', '2012/12/4', '2012/12/4');
+INSERT INTO `vote`.`m_party` (`party_id`, `party_name`, `regist_date`, `update_date`) VALUES (99, '無所属', '2012/12/4', '2012/12/4');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `vote`.`m_election`
 -- -----------------------------------------------------
 START TRANSACTION;
