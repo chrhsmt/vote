@@ -50,6 +50,9 @@ d.run(function(){
 	  app.use(passport.session());
 	  addCommonComponent(app);
 
+	  app.use(express.compress({
+		  level:4
+	  }));
 	  app.use(app.router);
 	  app.use(express.static(path.join(__dirname, 'public')));
 
