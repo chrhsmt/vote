@@ -50,3 +50,12 @@ exports.getOpinions = function(electionId, constituencyId, callback) {
 		if (callback) callback(rows);
 	});
 };
+
+
+exports.getMunicipalities = function(prefectureId, callback) {
+	var sql = "select * from m_constituency m1 " +
+			"where m1.constituency_type = 3 and m1.prefecture_id = :prefectureId";
+	connection.select(sql, {prefectureId: prefectureId}, function(rows) {
+		if (callback) callback(rows);
+	});
+};

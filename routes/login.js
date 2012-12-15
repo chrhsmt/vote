@@ -7,7 +7,11 @@ exports.login = function(req, res) {
 			function(user) {
 				req.session.user = user;
 				req.session.isLogin = true;
-			    res.redirect('/');
+				if (req.session.authRedirect) {
+					res.redirect(req.session.authRedirect);
+				} else {
+				    res.redirect('/');
+				}
 			});
 }
 

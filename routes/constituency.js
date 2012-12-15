@@ -63,3 +63,9 @@ exports.addIssue = function(req, res) {
 		res.redirect('/election/' + req.body.electionId + '/constituency/' + req.body.constituencyId);
 	});
 };
+
+exports.getMunicipalities = function(req, res) {
+	constituencyDao.getMunicipalities(req.query.prefectureId, function(rows) {
+		res.send(rows);
+	})
+}

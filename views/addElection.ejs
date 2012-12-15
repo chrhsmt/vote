@@ -1,0 +1,96 @@
+<form class="form-horizontal" action="/election/add" method="post">
+  <fieldset>
+  <legend>選挙情報追加</legend>
+  <div class="control-group">
+  <label class="control-label" for="inputTitle">タイトル</label>
+  <div class="controls">
+  <input type="text" id="inputTitle" name="title" placeholder="タイトル" value="" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputDescription">説明</label>
+  <div class="controls">
+  <textarea id="inputDescription" name="description" placeholder="説明"></textarea>
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputVotingDate">投票日</label>
+  <div class="controls">
+  <input type="text" id="inputVotingDate" name="votingDate" placeholder="投票日" value="" />
+  </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label" for="inputVotingDate">選挙区タイプ</label>
+  <div class="controls" id="constituency">
+    <div class="accordion-group">
+	  <label class="radio" for="typeSmall">
+	    <input type="radio" id="typeSmall" name="constituency_type" value="0" data-toggle="collapse" data-parent="#constituency" data-target="#small" checked="checked" />
+	    小選挙区
+	  </label>
+	  <div id="small" class="collapse in">
+	    <p>
+	      <a href="http://ja.wikipedia.org/wiki/小選挙区制" target="_blank">小選挙区制</a>です。
+	    </p>
+	  </div>
+	</div>
+	<div class="accordion-group">
+	  <label class="radio" for="typePrefecture">
+	    <input type="radio" id="typePrefecture" name="constituency_type" value="1" data-toggle="collapse" data-parent="#constituency" data-target="#prefecture" />
+	    都道府県
+	  </label>
+	  <div id="prefecture" class="collapse">
+	    <select name="prefecture">
+	    <% for ( var i in prefectures) { %>
+	      <option value="<%= prefectures[i].prefecture_id %>"><%= prefectures[i].prefecture_name %></option>
+	    <% } %>
+	    </select>
+	  </div>
+	</div>
+    <div class="accordion-group">
+	  <label class="radio" for="typeMunicipality">
+	    <input type="radio" id="typeMunicipality" name="constituency_type" value="2" data-toggle="collapse" data-parent="#constituency" data-target="#municipality" />
+	    地方自治体
+	  </label>
+	  <div id="municipality" class="collapse">
+	    <select name="prefecture">
+	    <% for ( var i in prefectures) { %>
+	      <option value="<%= prefectures[i].prefecture_id %>"><%= prefectures[i].prefecture_name %></option>
+	    <% } %>
+	    </select>
+	    <br />
+	    <select name="municipality">
+	    </select>
+	  </div>
+	</div>
+  </div>
+  </div>
+  <div class="control-group">
+  <div class="controls">
+  <% if (isLogin) { %>
+  <button type="submit" class="btn">追加&nbsp;/&nbsp;変更</button>
+  <% } else { %>
+  <a href="<%= fbLoginPath %>"><img src="/img/flogin.jpg" /></a>
+  <% } %>
+  </div>
+  </div>
+  </fieldset>
+</form>
+<script type="text/javascript">
+$("#municipality > select[name=prefecture]").on("change", function() {
+  $(this).after("<img id='loading' src='/img/load.gif' />")
+  $.ajax({
+    type: 'GET',
+    url: '/municipalities/json',
+    data: {prefectureId: $(this).val()},
+    dataType: 'json',
+    success: function(json) {
+      var html = "";
+      for (var i = 0; i < json.length; i++) {
+        html += "<option value='" + json[i].constituency_id + "'>" + json[i].name + "</option>"
+      }
+      $("select[name=municipality]").html(html);
+      $("#loading").remove();
+    }
+  });
+});
+</script>

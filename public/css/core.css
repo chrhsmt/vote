@@ -18,7 +18,11 @@ body {
  	color: #FFFFFF;
 }
 
+/* bootstrap override */
 .navbar .brand {
 	padding-left: 30px;
 }
 
+#constituency .accordion-group {
+	border: none;
+}

@@ -90,6 +90,7 @@ d.run(function(){
 	app.get('/user/:id', user.id);
 //	app.get('/login', login.login);
 	app.get('/logout', login.logout);
+	app.get('/municipalities/json', constituency.getMunicipalities);
 	app.get('/issue/new', issue.add);
 	app.post('/issue/new', issue.add);
 	app.get('/candidate/new', candidate.add);
@@ -139,7 +140,13 @@ d.run(function(){
 	});
 
 	//facebookで認証
-	app.get('/auth/facebook', passport.authenticate('facebook'));
+	//ミドルウェアとして動作する。
+	app.get('/auth/facebook',
+			function(req, res){
+				req.session.authRedirect = req.query.redirect;
+				passport.authenticate('facebook')(req, res);
+			});
+
 	//認証後のcallback
 	app.get('/auth/facebook/callback',
 	  passport.authenticate('facebook', { failureRedirect: '/' }),
@@ -193,6 +200,9 @@ d.on('error', function(e) {
 function addCommonComponent(app) {
 	app.use(function(req, res, next) {
 		console.log("addCommonComponent");
+
+		//fbログイン用URL生成
+		app.locals.fbLoginPath = "/auth/facebook?redirect=" + escape(req.path);
 
 		var isLogin = (req.session.passport.user != null);		
 //		for (x in req.session.passport.user) {

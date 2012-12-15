@@ -17,8 +17,8 @@
         <a class="brand" href="/"><%= title %></a>
         <div class"nav-collapse collapse">
           <ul class="nav">
+            <li><a href="/election/add">選挙登録</a></li>
           <!--
-            <li><a href="#">Link 1</a></li>
             <li><a href="#">Link 2</a></li>
           -->
             <% if (isLogin && user) { %>
@@ -29,7 +29,7 @@
             <% if (isLogin) { %>
             <li><a href="/logout">logout</a></li>
             <% } else { %>
-            <li><a href="/auth/facebook"><img src="/img/flogin.jpg" /></a></li>
+            <li><a href="<%= fbLoginPath %>"><img src="/img/flogin.jpg" /></a></li>
             <% } %>
           </ul>
         </div>

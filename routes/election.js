@@ -2,8 +2,13 @@
 var async = require('async');
 var electionDao = require('../dao/electionDao');
 var constituencyDao = require('../dao/constituencyDao');
+var prefectureDao = require('../dao/prefectureDao');
 
 exports.index = function(req, res) {
+	if (req.params.electionId == "add") {
+		addElection(req, res);
+		return;
+	}
 	var showAll = !req.params.electionId;
 	if (showAll) {
 		electionDao.getAllElections(function(rows) {
@@ -31,6 +36,14 @@ exports.index = function(req, res) {
 							});
 		});
 	}
+}
+
+function addElection(req, res) {
+	prefectureDao.list(function(rows) {
+		res.render('addElection', {
+			prefectures: rows
+		});
+	});
 }
 
 exports.detail = function(req, res) {
