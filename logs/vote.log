@@ -1,0 +1,72 @@
+[2013-01-20 23:12:51.929] [development mode init.] default - undefined
+[2013-01-20 23:12:51.940] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:13:05.011] [ERROR] default - ReferenceError: logger is not defined
+    at Object.handle (/Users/chr/program/nodejs/ws/vote/app.js:206:3)
+    at Context.next (/Users/chr/program/nodejs/ws/vote/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Context.actions.pass (/Users/chr/program/nodejs/ws/vote/node_modules/passport/lib/passport/context/http/actions.js:77:8)
+    at SessionStrategy.authenticate (/Users/chr/program/nodejs/ws/vote/node_modules/passport/lib/passport/strategies/session.js:52:10)
+    at attempt (/Users/chr/program/nodejs/ws/vote/node_modules/passport/lib/passport/middleware/authenticate.js:243:16)
+    at Passport.authenticate (/Users/chr/program/nodejs/ws/vote/node_modules/passport/lib/passport/middleware/authenticate.js:244:7)
+    at next (/Users/chr/program/nodejs/ws/vote/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Passport.initialize (/Users/chr/program/nodejs/ws/vote/node_modules/passport/lib/passport/middleware/initialize.js:69:5)
+    at next (/Users/chr/program/nodejs/ws/vote/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.session [as handle] (/Users/chr/program/nodejs/ws/vote/node_modules/express/node_modules/connect/lib/middleware/session.js:298:7)
+[2013-01-20 23:13:05.133] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 500 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:53.421] [development mode init.] default - undefined
+[2013-01-20 23:14:53.431] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:14:58.246] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.409] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 200 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:58.439] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.440] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.441] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.447] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.469] [addCommonComponent] default - undefined
+[2013-01-20 23:14:58.487] [INFO] default - 127.0.0.1 - - "GET /js/bootstrap.min.js HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:58.489] [INFO] default - 127.0.0.1 - - "GET /css/core.css HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:58.505] [INFO] default - 127.0.0.1 - - "GET /img/flogin.jpg HTTP/1.1" 200 1357 "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:58.506] [INFO] default - 127.0.0.1 - - "GET /css/bootstrap.min.css HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:14:58.510] [INFO] default - 127.0.0.1 - - "GET /js/jquery-1.8.3.min.js HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:17:16.419] [development mode init.] default - undefined
+[2013-01-20 23:17:16.429] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:17:19.150] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.177] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:17:19.226] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.246] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.248] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.259] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.755] [addCommonComponent] default - undefined
+[2013-01-20 23:17:19.759] [INFO] default - 127.0.0.1 - - "GET /img/flogin.jpg HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:18:04.658] [development mode init.] default - undefined
+[2013-01-20 23:18:04.668] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:18:06.677] [addCommonComponent] default - undefined
+[2013-01-20 23:18:06.697] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:18:06.750] [addCommonComponent] default - undefined
+[2013-01-20 23:18:06.760] [addCommonComponent] default - undefined
+[2013-01-20 23:18:06.762] [addCommonComponent] default - undefined
+[2013-01-20 23:18:06.764] [addCommonComponent] default - undefined
+[2013-01-20 23:18:07.304] [addCommonComponent] default - undefined
+[2013-01-20 23:25:13.649] [development mode init.] default - undefined
+[2013-01-20 23:25:13.658] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:25:23.799] [addCommonComponent] default - undefined
+[2013-01-20 23:25:23.820] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:25:23.866] [addCommonComponent] default - undefined
+[2013-01-20 23:25:23.873] [addCommonComponent] default - undefined
+[2013-01-20 23:25:23.876] [addCommonComponent] default - undefined
+[2013-01-20 23:25:23.876] [addCommonComponent] default - undefined
+[2013-01-20 23:25:24.422] [addCommonComponent] default - undefined
+[2013-01-20 23:26:23.943] [INFO] default - connection init.
+[2013-01-20 23:26:24.094] [development mode init.] default - undefined
+[2013-01-20 23:26:24.101] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:26:25.909] [addCommonComponent] default - undefined
+[2013-01-20 23:26:25.909] [INFO] default - sql:select * from m_election
+[2013-01-20 23:26:25.925] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:26:25.981] [addCommonComponent] default - undefined
+[2013-01-20 23:26:25.981] [INFO] default - sql:select * from m_election
+[2013-01-20 23:26:25.983] [addCommonComponent] default - undefined
+[2013-01-20 23:26:25.983] [INFO] default - sql:select * from m_election
+[2013-01-20 23:26:25.986] [addCommonComponent] default - undefined
+[2013-01-20 23:26:25.990] [INFO] default - sql:select * from m_election
+[2013-01-20 23:26:25.991] [addCommonComponent] default - undefined
+[2013-01-20 23:26:25.992] [INFO] default - sql:select * from m_election
+[2013-01-20 23:26:26.533] [addCommonComponent] default - undefined
+[2013-01-20 23:26:26.534] [INFO] default - sql:select * from m_election

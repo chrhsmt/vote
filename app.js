@@ -23,22 +23,23 @@ var express = require('express')
   , RadisStore = require('connect-redis')(express)
   , electionDao = require('./dao/electionDao')
   , userDao = require('./dao/userDao')
-  , config = require('./config');
+  , config = require('./config')
+  , logger = require('./lib/logger');
 
 var d = domain.create();
-
 d.run(function(){
 	var app = module.exports = express();
 
 	app.configure(function(){
 
+	  app.use(logger.log4js.connectLogger(logger, { level: logger.log4js.levels.INFO, nolog: ["\\.css", "\\.js", "\\.jpg", "\\.jpeg", "\\.gif"] }));
 	  app.set('port', process.env.PORT || 3000);
 	  app.set('views', __dirname + '/views');
 	  app.set('view engine', 'ejs');
 	  app.set('layout', 'layout');
 	  app.use(expressLayouts);
 	  app.use(express.favicon());
-	  app.use(express.logger('dev'));
+//	  app.use(express.logger('dev')); // switch logger to log4js
 	  app.use(express.compress());
 	  app.use(express.bodyParser());
 	  app.use(express.methodOverride());
@@ -57,7 +58,7 @@ d.run(function(){
 	  app.use(express.static(path.join(__dirname, 'public')));
 
 	  app.use(function(err, req, res, next){
-		  console.error(err.stack);
+		  logger.error(err.stack);
 		  res.render('error');
 		});
 
@@ -70,7 +71,7 @@ d.run(function(){
 	});
 
 	app.configure('development', function(){
-		console.log('development mode init.');
+		logger.info('development mode init.');
 	  app.use(express.errorHandler());
 	});
 
@@ -106,7 +107,7 @@ d.run(function(){
 	app.get('/opinion/:opinionId', opinion.index);
 
 	http.createServer(app).listen(app.get('port'), function(){
-	  console.log("Express server listening on port " + app.get('port'));
+	  logger.info("Express server listening on port " + app.get('port'));
 	});
 	
 	// passport
@@ -199,7 +200,7 @@ d.on('error', function(e) {
 // 共通処理
 function addCommonComponent(app) {
 	app.use(function(req, res, next) {
-		console.log("addCommonComponent");
+		logger.debug("addCommonComponent");
 
 		//fbログイン用URL生成
 		app.locals.fbLoginPath = "/auth/facebook?redirect=" + escape(req.path);

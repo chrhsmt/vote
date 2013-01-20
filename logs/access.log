@@ -1,0 +1,88 @@
+[2013-01-20 23:28:27.078] [INFO] default - connection init.
+[2013-01-20 23:28:27.255] [development mode init.] default - undefined
+[2013-01-20 23:28:27.267] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:28:44.681] [addCommonComponent] default - undefined
+[2013-01-20 23:28:44.682] [INFO] default - sql:select * from m_election
+[2013-01-20 23:28:44.700] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:28:44.773] [addCommonComponent] default - undefined
+[2013-01-20 23:28:44.774] [INFO] default - sql:select * from m_election
+[2013-01-20 23:28:44.781] [addCommonComponent] default - undefined
+[2013-01-20 23:28:44.782] [INFO] default - sql:select * from m_election
+[2013-01-20 23:28:44.785] [addCommonComponent] default - undefined
+[2013-01-20 23:28:44.786] [INFO] default - sql:select * from m_election
+[2013-01-20 23:28:44.787] [addCommonComponent] default - undefined
+[2013-01-20 23:28:44.791] [INFO] default - sql:select * from m_election
+[2013-01-20 23:28:45.293] [addCommonComponent] default - undefined
+[2013-01-20 23:28:45.297] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:42.717] [INFO] default - connection init.
+[2013-01-20 23:29:42.881] [development mode init.] default - undefined
+[2013-01-20 23:29:42.894] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:29:48.710] [addCommonComponent] default - undefined
+[2013-01-20 23:29:48.711] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:48.737] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:29:48.781] [addCommonComponent] default - undefined
+[2013-01-20 23:29:48.782] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:48.783] [addCommonComponent] default - undefined
+[2013-01-20 23:29:48.783] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:48.784] [addCommonComponent] default - undefined
+[2013-01-20 23:29:48.787] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:48.795] [addCommonComponent] default - undefined
+[2013-01-20 23:29:48.795] [INFO] default - sql:select * from m_election
+[2013-01-20 23:29:49.263] [addCommonComponent] default - undefined
+[2013-01-20 23:29:49.264] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:48.471] [INFO] default - connection init.
+[2013-01-20 23:30:48.619] [development mode init.] default - undefined
+[2013-01-20 23:30:48.627] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:30:51.769] [addCommonComponent] default - undefined
+[2013-01-20 23:30:51.769] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:51.800] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:30:51.840] [addCommonComponent] default - undefined
+[2013-01-20 23:30:51.841] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:51.850] [addCommonComponent] default - undefined
+[2013-01-20 23:30:51.850] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:51.851] [addCommonComponent] default - undefined
+[2013-01-20 23:30:51.855] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:51.856] [addCommonComponent] default - undefined
+[2013-01-20 23:30:51.858] [INFO] default - sql:select * from m_election
+[2013-01-20 23:30:52.400] [addCommonComponent] default - undefined
+[2013-01-20 23:30:52.401] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:06.416] [addCommonComponent] default - undefined
+[2013-01-20 23:31:06.416] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:06.423] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:31:06.477] [addCommonComponent] default - undefined
+[2013-01-20 23:31:06.478] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:06.479] [addCommonComponent] default - undefined
+[2013-01-20 23:31:06.480] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:06.484] [addCommonComponent] default - undefined
+[2013-01-20 23:31:06.488] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:06.490] [addCommonComponent] default - undefined
+[2013-01-20 23:31:06.491] [INFO] default - sql:select * from m_election
+[2013-01-20 23:31:07.016] [addCommonComponent] default - undefined
+[2013-01-20 23:31:07.017] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:34.081] [INFO] default - connection init.
+[2013-01-20 23:35:34.226] [development mode init.] default - undefined
+[2013-01-20 23:35:34.235] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:35:38.465] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:38.466] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:38.488] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:35:38.524] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:38.524] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:38.531] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:38.531] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:38.532] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:38.535] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:38.536] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:38.537] [INFO] default - sql:select * from m_election
+[2013-01-20 23:35:39.044] [DEBUG] default - addCommonComponent
+[2013-01-20 23:35:39.045] [INFO] default - sql:select * from m_election
+[2013-01-20 23:43:22.615] [development mode init.] default - undefined
+[2013-01-20 23:44:08.711] [INFO] default - connection init.
+[2013-01-20 23:44:08.880] [INFO] default - development mode init.
+[2013-01-20 23:44:08.903] [INFO] default - Express server listening on port 3000
+[2013-01-20 23:44:12.274] [INFO] default - sql:select * from m_election
+[2013-01-20 23:44:12.296] [INFO] default - 127.0.0.1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0"
+[2013-01-20 23:44:12.392] [INFO] default - sql:select * from m_election
+[2013-01-20 23:44:12.401] [INFO] default - sql:select * from m_election
+[2013-01-20 23:44:12.403] [INFO] default - sql:select * from m_election
+[2013-01-20 23:44:12.409] [INFO] default - sql:select * from m_election
+[2013-01-20 23:44:13.026] [INFO] default - sql:select * from m_election

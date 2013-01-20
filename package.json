@@ -15,6 +15,7 @@
     "dateformat": "*",
     "async": "*",
     "passport": "*",
-    "passport-facebook": "*"
+    "passport-facebook": "*",
+    "log4js": "0.5.6"
   }
 }
